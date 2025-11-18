@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    container_name: fastAPI-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: contacts_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:
